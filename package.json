@@ -1,0 +1,29 @@
+{
+	"name": "r2-webdav",
+	"version": "1.0.0",
+	"private": true,
+	"type": "module",
+	"description": "WebDAV server for Cloudflare R2, deployable with one click.",
+	"scripts": {
+		"deploy": "wrangler deploy",
+		"dev": "wrangler dev",
+		"start": "wrangler dev",
+		"format": "prettier . --write",
+		"format:check": "prettier . --check",
+		"typecheck": "tsc --noEmit",
+		"lint": "eslint .",
+		"check": "npm run typecheck && npm run lint && npm run format:check"
+	},
+	"dependencies": {
+		"@xmldom/xmldom": "^0.8.11"
+	},
+	"devDependencies": {
+		"@cloudflare/workers-types": "*",
+		"@eslint/js": "^9.39.5",
+		"eslint": "^9.39.4",
+		"prettier": "^3.1.1",
+		"typescript": "^5.0.4",
+		"typescript-eslint": "^8.71.1",
+		"wrangler": "^4.149.0"
+	}
+}

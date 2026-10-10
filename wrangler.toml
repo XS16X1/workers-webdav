@@ -1,0 +1,36 @@
+name = "r2-webdav"
+main = "src/index.ts"
+compatibility_date = "2025-05-08"
+compatibility_flags = ["nodejs_compat"]
+
+# R2 bucket binding.
+#
+# Zero-config: when this Worker is deployed through the Deploy-to-Workers
+# button or Cloudflare's Git integration (Workers Builds), the R2 bucket
+# below is created automatically if it does not exist. No manual bucket
+# setup is required. The auto-generated API token used by Workers Builds
+# already includes "Workers R2 Storage (edit)" permission.
+[[r2_buckets]]
+binding = "bucket"
+bucket_name = "r2-webdav"
+
+# Runtime credentials — deployed as runtime variables with these defaults so
+# the service works immediately after deploy.
+#
+# CHANGE THEM afterwards, using either approach (both override the defaults):
+#   - Dashboard: Workers & Pages → your Worker → Settings → Variables and
+#     Secrets → set USERNAME / PASSWORD with type "Encrypt" (a secret takes
+#     precedence over the same-named plaintext var and survives redeploys), or
+#   - CLI: `wrangler secret put USERNAME` / `wrangler secret put PASSWORD`.
+# Editing the values below also works; they are re-applied on every deploy.
+[vars]
+USERNAME = "admin"
+PASSWORD = "admin"
+
+# Optional: cap for PROPFIND / directory listings (default 10000, 0 = unlimited).
+# MAX_LIST_ENTRIES = "10000"
+
+# Workers Logs: sample a fraction of requests to control cost.
+[observability]
+enabled = true
+head_sampling_rate = 0.1
